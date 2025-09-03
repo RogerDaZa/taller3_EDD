@@ -5,7 +5,6 @@ import os
 CLIENTES_FILE = 'clientes.csv'
 PEDIDOS_FILE = 'pedidos.csv'
 
-
 def cargar_clientes():
     
     clientes = []
@@ -104,12 +103,12 @@ def registrar_pedido(clientes, pedidos):
         return
 
     producto = input("Producto: ").strip()
-    precio = input("Precio (opcional): ").strip()
-    cantidad = input("Cantidad (opcional): ").strip()
+    precio = input("Precio: ").strip()
+    cantidad = input("Cantidad: ").strip()
     precio = float(precio) if precio else 0.0
     cantidad = int(cantidad) if cantidad else 0
 
-    nuevo_id = obtener_nuevo_id(pedidos, 'id_pedido')
+    nuevo_id = obtener_new_id(pedidos, 'id_pedido')
     pedidos.append({'id_pedido': nuevo_id, 'id_cliente': id_cliente, 'producto': producto,
                     'precio': precio, 'cantidad': cantidad, 'activo': 1})
     guardar_pedidos(pedidos)
@@ -161,11 +160,11 @@ def guardar_venta(clientes, pedidos):
     precio = input("Precio : ").strip()
     precio = float(precio) if precio else 0.0
 
-    nuevo_id = obtener_nuevo_id(pedidos, 'id_pedido')
+    nuevo_id = obtener_new_id(pedidos, 'id_pedido')
     pedidos.append({'id_pedido': nuevo_id, 'id_cliente': id_cliente, 'producto': producto,
                     'precio': precio, 'cantidad': cantidad, 'activo': 1})
     guardar_pedidos(pedidos)
-    print("Venta registrada con ID:", nuevo_id)
+    print("Venta registrada con ID:", new_id)
 
 
 def listar_ventas_por_cliente(clientes, pedidos):
@@ -192,10 +191,7 @@ def listar_ventas_por_cliente(clientes, pedidos):
             print(v['producto'], "-", v['cantidad'], "x", v['precio'], "=", subtotal)
         print("TOTAL:", total)
 
-
-# Utilidades 
-
-def obtener_nuevo_id(items, id_field):
+def obtener_new_id(items, id_field):
     
     if items:
         return max(item[id_field] for item in items) + 1
@@ -206,7 +202,6 @@ def obtener_nuevo_id(items, id_field):
 def menu():
     clientes = cargar_clientes()
     pedidos = cargar_pedidos()
-
     while True:
         print("\nMENÚ PRINCIPAL")
         print("1. Registrar cliente")
