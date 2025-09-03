@@ -34,11 +34,11 @@ def registrar_cliente(clientes):
     nombre = input('Nombre: ').strip()
     apellido = input('Apellido: ').strip()
     telefono = input('Teléfono: ').strip()
-    nuevo_id = obtener_nuevo_id(clientes, 'id_cliente')
-    clientes.append({'id_cliente': nuevo_id, 'nombre': nombre, 'apellido': apellido,
+    new_id = obtener_new_id(clientes, 'id_cliente')
+    clientes.append({'id_cliente': new_id, 'nombre': nombre, 'apellido': apellido,
                      'telefono': telefono, 'activo': 1})
     guardar_clientes(clientes)
-    print("Cliente registrado con ID:", nuevo_id)
+    print("Cliente registrado con ID:", new_id)
 
 
 def listar_clientes(clientes):
@@ -93,7 +93,7 @@ def guardar_pedidos(pedidos):
 
 def registrar_pedido(clientes, pedidos):
     
-    id_cliente = input('ID del clientee: ').strip()
+    id_cliente = input('ID del cliente: ').strip()
     if not id_cliente.isdigit():
         print("ID inválido")
         return
@@ -158,7 +158,7 @@ def guardar_venta(clientes, pedidos):
         print("Cantidad inválida")
         return
     cantidad = int(cantidad)
-    precio = input("Precio (opcional): ").strip()
+    precio = input("Precio : ").strip()
     precio = float(precio) if precio else 0.0
 
     nuevo_id = obtener_nuevo_id(pedidos, 'id_pedido')
@@ -216,8 +216,7 @@ def menu():
         print("5. Listar pedidos de cliente")
         print("6. Guardar venta")
         print("7. Listar ventas por cliente")
-        print("8. eliminar pedido")
-        print("9. Salir")
+        print("8. Salir")
 
         opcion = input("Opción: ").strip()
 
@@ -235,10 +234,9 @@ def menu():
             guardar_venta(clientes, pedidos)
         elif opcion == '7':
             listar_ventas_por_cliente(clientes, pedidos)
-        elif opcion == '9':
+        elif opcion == '8':
             print("Saliendo...")
             break
-        elif opcion == '8':
             eliminar_pedido(pedidos)
         else:
             print("Opción inválida")
